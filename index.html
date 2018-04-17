@@ -23,10 +23,10 @@ var map = new mapboxgl.Map({
     zoom: 15 // starting zoom
    
 });
-     var center = map.getZoom();
-     console.log(center);
-    
-    map.setPitch(60);
+     
+    map.on("click", function()
+           {var center = map.getZoom();
+     console.log(center);};
 </script>
 
 </body>
