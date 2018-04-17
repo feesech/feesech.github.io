@@ -24,13 +24,9 @@ var map = new mapboxgl.Map({
    
 });
      
-    map.on("click", function()
+    map.on("zoom", function()
            {var center = map.getZoom();
-     console.log(center)};)
-    
-    map.on("click", function()
-           {var center = map.getZoom();
-     console.log(center)};)
+     console.log('zoom', center)});
     
 </script>
 
