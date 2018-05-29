@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWlraGFpbHNva29sb3YiLCJhIjoiY2pldjZ0NHZqMGI5MTJxbDd1dHV3ZDl0eiJ9.omvRoGjfSasjuCVj9TRJRw';
+
+  var bounds = [
+  [-0.275,51.427], // Southwest coordinates
+   [0.035,51.604]];
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mikhailsokolov/cjh7vbv126f442rp8h0lar4mf', // stylesheet location
+    center: [-0.049,51.518], // starting position [lng, lat]
+    zoom: 12, // starting zoom
+    maxBounds: bounds
+});
+
+
+var xmlhttp = new XMLHttpRequest();
+var url = "airbnb.geojson";
+
+function ProcessData(data) {
+//  console.log('bike stations count:', data.features.length);
+//   for(i = 0; i < data.features.length; i++) {
+//     total = total + data.features[i].properties.BikeParkingSlotsAmount;
+// //    console.log(data.features[i].properties, data.features[i].properties.Name, data.features[i].properties.BikeParkingSlotsAmount);
+//}
+  //console.log(data);
+  map.addSource("airbnb", { type: "geojson", data: data});
+  map.addLayer({
+    "id": "airbnb",
+    "source": "airbnb",
+    "type": "fill",
+    'layout': {},
+    "paint": {
+            'fill-color': '#088',
+            'fill-opacity': 0.4
+        }
+
+  });
+
+
+  map.on('click', 'airbnb', function(e) {
+
+    //BikeParkingSlotsAmount
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    var description = e.features[0].properties;
+    console.log(coordinates);
+    console.log(description);
+
+    new mapboxgl.Popup()
+      .setLngLat(e.lngLat)
+      .setHTML('<h4>'+description.NAME+'</h4><p>Amount of Households: </p>'+ description.NUMPOINTS + '<p>Percentage of Airbnb users: </p>' + description.percentage)
+      .addTo(map);
+
+
+  });
+
+}
+
+
+
+xmlhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+    var json = JSON.parse(this.responseText);
+      ProcessData(json);
+    }
+};
+
+
+//event map fully loaded
+map.on("load", function() {
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+});
+
+
+
+
+</script>
+
+</body>
+</html>
