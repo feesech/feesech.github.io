@@ -1,0 +1,114 @@
+
+body { margin:0; padding:0; width: auto;min-width: 640px; max-width: 1280px; margin: 0 auto; box-shadow: 0 0 10px rgba(0,0,0, 0.5); font-family: helvetica;}
+
+
+#map { position:relative; width: 100%; height:600px; float: left; }
+
+.nav {
+    width: 100%;
+    align: center;
+    background-color: royalblue;}
+.nav a { color: mintcream;
+    text-decoration: none;}
+.nav th {
+    width: 25%;
+    font-size: 20px; }
+
+.navtop {
+    margin-top: -22px;
+    position: fixed;
+     width:100%;
+    max-width: 1280px;
+    align: center;
+    background-color: royalblue;
+    color: mintcream;
+    text-decoration: none;
+    z-index: 10;
+    height: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.5);
+    font-family: helvetica;
+}
+.navtop a { color: mintcream;
+    text-decoration: none;}
+
+.promo {
+    height: 400px;
+    /*background-color: rgba(117, 202, 255, 0.4);*/
+    position: relative;
+    background: url(header_pic.png) 100%  no-repeat;
+    background-size: cover;
+    /*background-attachment: scroll;*/}
+
+.center {
+    position: relative;
+    top: 150px;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: royalblue;}
+
+
+.undermap {
+    background-color: white;
+    width: 100%;
+    height: 600px;
+    overflow:hidden;}
+
+
+.column {
+    width: 25%;
+    float: left;
+    text-align: center;}
+
+
+.half60 {
+    width: 75%;
+    height: 600px;
+    float: left;}
+
+.half40 {
+    width: 20%; 
+    height: 600px;
+    float: left;
+    margin-left: 20px;
+    font-size: 16px; }
+
+.half40 ul {width: 100%;}
+
+.half40 li {
+    display: inline-block;
+    width: 30%;
+    list-style: none;
+    text-align: center;
+    padding-right: 5px;}
+
+.half40 li:hover {
+    color: #ffffee; /* Цвет текста активного пункта */
+    background-color: #5488af; /* Цвет фона активного пункта */
+    
+   }
+.half40 li:active {
+    color: #ffffee; /* Цвет текста активного пункта */
+    background-color: #5488af;
+}
+
+.finance {border-collapse: collapse; margin: 20px;
+    font-size: 20px;
+    width: 98%;
+    height: 160px;
+    border: none;
+    display: table;}
+
+.finance th {background-color: cadetblue; padding: 5px;} 
+.finance td {padding: 5px;} 
+.finance td:nth-child(2n) {text-align: right; }
+
+.business {border-collapse: collapse; margin: 20px; 
+    width: 98%;
+    height: 160px;
+    font-size: 20px;}
+
+.business td {border: solid 1px; padding: 5px; }
+
+
