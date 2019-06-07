@@ -5,6 +5,7 @@
   <title>Employ yourself</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'>
 
   <!--script src="http://code.jquery.com/jquery-1.9.1.js"></script-->
@@ -35,14 +36,15 @@
     </div>
 
     <nav role="navigation">
-    <table class="nav">
+        <div class="section"></div>
+    <!--<table class="nav">
         <tr>
             <th><a href="#1">Welcome</a></th>
             <th><a href="#2">MAP</a></th>
             <th><a href="#3">Properties</a></th>
             <th><a href="#4">Business</a></th>
         </tr>
-    </table>
+    </table>-->
     </nav>
 
     <!--карта с отображением свойств микрорайона-->
@@ -51,26 +53,32 @@
             <div id="map"></div>
         </div>
         <div class="half40" id="description">
-            <p>Сюда пишутся данные из json</p>
-            <p>Население, чел: </p>
-            <meter value="1300" optimum="3000" low="2000" high="5000" min="550" max="7900"></meter>
-            <p>Муниципальная/Жилая: </p>
-            <p>Наличие бизнес-объектов, шт: </p>
-            <meter value="1" optimum="3" low="1" high="8" min="0" max="10"></meter>
-            <p>Удаление от главных улиц, м: </p>
-            <meter value="40" optimum="40" low="0" high="100" min="0" max="200"></meter>
+            <br>
+            <p>Universal index: 0</p>
+            <input type="range"  id="universal" min="-12"  max="14" value='0'>
+            <p>Population: 0 </p>
+            <meter value="0" optimum="3000" low="2000" high="5000" min="300" max="7900"></meter>
+            <p>Business activity: 0</p>
+            <meter value="0" optimum="3" low="1" high="8" min="0" max="10"></meter>
+            <p>Territory activity: 0</p>
+            <meter value="0" optimum="40" low="0" high="100" min="0" max="200"></meter>
+            <p>Land type: None</p>
+        
+            
         </div>
     </div>
     
     <nav role="navigation">
-    <table class="nav">
+        <div class="section"></div>
+    <!--<table class="nav">
+        
         <tr>
             <th><a href="#1">Welcome</a></th>
             <th><a href="#2">MAP</a></th>
             <th><a name="3">Properties</a></th>
             <th><a href="#4">Business</a></th>
         </tr>
-    </table>
+    </table>-->
     </nav>
 
     <!--микрорайон с возможностью развития-->
@@ -79,35 +87,42 @@
             <img src="pic/1.png"  height="100%" >
         </div>
         
+        
         <div id="params" class="half40">
-            <ul>
-		<li onclick="showTable(1);">Cheese</li>
-		<li onclick="showTable(2);">Beer</li>
-		<li onclick="showTable(3);">Wood</li>
+            <ul> 
+		<li onclick="showTable(1);"><div id="brie">Cheese dairy</div></li>
+		<!--<li onclick="showTable(2);">Beer</li>-->
+		<li  onclick="showTable(2);"><div id="chair">Joiner's shop</div></li>
 	    </ul>
+       
 	    
             <p id="wrkrs">Employers: 1</p>
 	    <input type="range" min="1" max="10" name="workers" value="1" width="80%" 
-		oninput="changeWorkers(this.value)">
+		oninput="changeWorkers(this.value)" id="standard">
             <p id="bldsz">Building size: small</p>
             <!--input type="range" min="1" max="3" name="buildsize" value="1" 
 		onchange="document.getElementById('bldsz').innerText = 'Building size: '+ bldsz[this.value-1];"-->
-            <input type="range" min="1" max="3" name="buildsize" value="1" 
+            <input type="range" min="1" max="3" name="buildsize" value="1" id="standard" 
 		oninput="changeBuildingSize(this.value);">
-            <p><button>Поехали...</button></p>
+            <div id="profitability"></div>
+            <div id="profitability2"></div>
+        </div>
+        <div class="over"  id="farm" >
         </div>
        
     </div>
 
     <nav role="navigation">
-    <table class="nav">
+        <div class="section"></div>
+<!-- <table class="nav">
         <tr>
             <th><a href="#1">Welcome</a></th>
             <th><a href="#2">MAP</a></th>
             <th><a href="#3">Properties</a></th>
             <th><a name="4">Business</a></th>
         </tr>
-    </table>
+    </table> -->
+
     </nav>
 
     <!--итоговое резюме проекта-->
@@ -117,7 +132,7 @@
     </div-->
     
     <!--div class="undermap"-->
-        <table class="finance" id="cheese" border="1">
+        <table class="finance" id="cheese">
             <tr>
                 <th ></th>
                 <th >Capex, &#x20bd;</th>
@@ -143,39 +158,39 @@
 
 
             <tr>
-                <td>Building, units</td><td>3</td><td>300000</td><td>Wage fund</td><td>5</td><td>250000</td><td>Cheese</td><td>250</td><td>300000</td>
+                <td>Building, units</td><td>3</td><td>0</td><td>Wage fund</td><td>5</td><td>250000</td><td>Cheese</td><td>250</td><td>300000</td>
             </tr>
             <tr>
-                <td>производственное оборудование</td><td>1</td><td>2001000</td><td>Consumables</td><td>5</td><td>450</td><td></td><td></td><td></td>
+                <td>Enterprise inventory</td><td>1</td><td>0</td><td>Consumables</td><td>5</td><td>450</td><td></td><td></td><td></td>
             </tr>
             <tr>
-                <td>торговое оборудование, units</td><td>1</td><td>2003000</td><td>land rental</td><td>1</td><td>100</td><td></td><td></td><td></td>
+                <td>Trade inventory, units</td><td>1</td><td>0</td><td>land rental</td><td>1</td><td>100</td><td></td><td></td><td></td>
             </tr>
             <tr>
-                <td>подключение к сетям</td><td>1</td><td>2000400</td><td>коммуналка</td><td>1</td><td>100</td><td></td><td></td><td></td>
+                <td>Facilities connection</td><td>1</td><td>0</td><td>коммуналка</td><td>1</td><td>100</td><td></td><td></td><td></td>
             </tr>
             <tr>
-                <td>гос оформление</td><td>1</td><td>2000500</td><td>ремонт</td><td>1</td><td>100</td><td></td><td></td><td></td>
+                <td>gov. registration</td><td>1</td><td>0</td><td>Repair fund</td><td>1</td><td>100</td><td></td><td></td><td></td>
             </tr>
             <tr>
-                <td>первоначальные расходы</td><td>1</td><td>2000500</td><td>патент</td><td>1</td><td>100</td><td></td><td></td><td></td>
+                <td>Working capital</td><td>1</td><td>0</td><td>Patent</td><td>1</td><td>100</td><td></td><td></td><td></td>
             </tr>
             <tr>
                 <th>Total</th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th>
             </tr>
             <tr>
-                <td>Capex</td><td></td><td>200000</td><td>Opex</td><td></td><td>100</td><td>revenue</td><td></td><td>100</td>
+                <td>Capex</td><td></td><td>0</td><td>Opex</td><td></td><td>100</td><td>Revenue</td><td></td><td>100</td>
             </tr>
             <tr>
                 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tr>
-                <td>период окупаемости</td><td></td><td>20</td><td>Выручка</td><td></td><td>30000</td><td></td><td></td><td></td>
+                <td>Self-repayment period</td><td></td><td>0</td><td>Profit</td><td></td><td>0</td><td></td><td></td><td></td>
             </tr>
         </table>
     
     
-    <table class="finance" id="saw" border="1">
+    <table class="finance" id="saw">
             <tr>
                 <th ></th>
                 <th >Capex, &#x20bd;</th>
@@ -216,7 +231,7 @@
                 <td>гос оформление</td><td>1</td><td>2000500</td><td>ремонт</td><td>1</td><td>100</td><td></td><td></td><td></td>
             </tr>
             <tr>
-                <td>первоначальные расходы</td><td>1</td><td>2000500</td><td>патент</td><td>1</td><td>100</td><td></td><td></td><td></td>
+                <td>Working capital</td><td>1</td><td>2000500</td><td>патент</td><td>1</td><td>100</td><td></td><td></td><td></td>
             </tr>
             <tr>
                 <th>Sum</th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th>
@@ -231,8 +246,25 @@
                 <td>период окупаемости</td><td></td><td>20</td><td>Выручка</td><td></td><td>30000</td><td></td><td></td><td></td>
             </tr>
         </table>
+    
  
         <table class="business" id="business">
+           
+            <tr>
+                <th>Key parthership</th><th>Key activities</th><th>Key resources</th><th>Value proposition</th><th>Customer relationship</th>
+            </tr>
+            <tr>
+                <td>Key parthership</td><td>Cheese production<br>Festival of cheese<br>Workshops</td><td>Key resources</td><td>Value proposition</td><td>Customer relationship</td>
+            </tr>
+            <tr>
+                <th>Customer segments</th><th>Cost structure</th><th colspan="2">Revenue streams</th><th>Channels</th>
+            </tr>
+            <tr>
+                <td>Customer segments</td><td>Cost structure</td><td colspan="2">Revenue streams</td><td>Channels</td>
+            </tr>
+                 
+        </table>
+    <table class="business" id="business2">
            
             <tr>
                 <th>Key parthership</th><th>Key activities</th><th>Key resources</th><th>Value proposition</th><th>Customer relationship</th>
@@ -248,12 +280,16 @@
             </tr>
                  
         </table>
+    <br>
+    <br>
+    <br>
      <!--/div-->        
    
 
 <script src="const.js"></script>
 
 <script>
+
    mapboxgl.accessToken = 'pk.eyJ1IjoibWlraGFpbHNva29sb3YiLCJhIjoiY2pldjZ0NHZqMGI5MTJxbDd1dHV3ZDl0eiJ9.omvRoGjfSasjuCVj9TRJRw';
 
 const map = new mapboxgl.Map({
@@ -296,31 +332,53 @@ map.on('click', 'newlayer', function (e) {
     population = e.features[0].properties.population;
     business = e.features[0].properties.amount || 0;
     distance = e.features[0].properties.width || 100000;
+    universal = e.features[0].properties.universal;
+    activity = e.features[0].properties.activity;
     // count with remap
     //low2+(X-low1)*(high2-low2)/(high1-low1)
-    activity = 1+(e.features[0].properties.activity-1)*(2-1)/(10-1);
+    active = 1+(e.features[0].properties.activity-1)*(2-1)/(10-1);
     demand = population * 0.25 * (10-business)/10;
+    
     
     //console.log(demand);
 
     document.getElementById('description').innerHTML = 
-        '<p>Население, чел: ' + population + '</p>' +
-        '<meter value=' + population + ' optimum="3000" low="2500" high="4500" min="0" max="5000"></meter>' +
-        '<p>Муниципальная/Жилая: ' + (e.features[0].properties.ismunicipal ? "Муниципальная" : "Жилая") + "</p>" +
-        '<p>Наличие бизнес-объектов, шт: ' + business + '</p>' +
-        '<meter value=' + business + ' optimum="3" low="1" high="8" min="0" max="10"></meter>' +
-        '<p>Удаление от главных улиц, м: ' + distance + '</p>' +
-        '<meter value=' + distance + ' optimum="40" low="0" high="100" min="0" max="200"></meter>';
+        '</br>' +
+        '<p>Universal index: ' + universal + '</p>' +
+        '<input type="range" list="tickmarks" id="universal" min="-12"  max="14"  value=' + universal + '>' +
+        '<p>Population: ' + population + '</p>' +
+        '<meter value=' + population + ' optimum="6000" low="2500" high="5000" min="500" max="8000"></meter>' +
+        '<p>Business activity: ' + business + '</p>' +
+        '<meter value=' + business + ' optimum="2" low="3" high="6" min="0" max="10"></meter>' +
+        '<p>territory activity: ' + activity + '</p>' +
+        '<meter value=' + activity + ' optimum="1" low="3" high="6" min="0" max="10"></meter>' +
+        '<p>Land type: ' + (e.features[0].properties.ismunicipal ? "Municipal" : "Residential") + "</p>"
+        ;
     
     //console.log(activity);
     
     document.getElementById('blocktype').innerHTML =
         '<img src="pic/' + blocktype + '.png"  height="100%">';
     
+    
+    if(universal < '-4')
+    {document.getElementById("universal").style.background = "#d8552d";}
+    else if(universal > '4')
+    {document.getElementById("universal").style.background = "#429b4d";}
+    else{document.getElementById("universal").style.background = "#f2b75e";
+    };
+    
 }); 
 
 var cheese_table = document.getElementById("cheese").rows;
-var saw_table = document.getElementById("saw").rows
+var saw_table = document.getElementById("saw").rows;
+var biz_cheese = document.getElementById("business").rows;
+var biz_saw = document.getElementById("business2").rows;
+
+document.getElementById("cheese").style.display = "none";
+    document.getElementById("saw").style.display = "none";
+    document.getElementById("business2").style.display = "none";
+    document.getElementById("business").style.display = "none";
     
 
 function showTable(tbl) {
@@ -328,14 +386,28 @@ function showTable(tbl) {
 	case 1 :
 		document.getElementById("cheese").style.display = "";
         document.getElementById("saw").style.display = "none"
+        document.getElementById("brie").style.background = "#1c5bc9";
+        document.getElementById("chair").style.background = "none";
+        document.getElementById("brie").style.color = "#ffffee";
+        document.getElementById("chair").style.color = "black";
+        document.getElementById("profitability").style.display = "";
+        document.getElementById("profitability2").style.display = "none";
+            document.getElementById("business").style.display = "";
+            document.getElementById("business2").style.display = "none";
+            
 		break;	
+
 	case 2 :
 		document.getElementById("cheese").style.display = "none"
-        document.getElementById("saw").style.display = "none";
-		break;	
-	case 3 :
-		document.getElementById("cheese").style.display = "none"
         document.getElementById("saw").style.display = "";
+        document.getElementById("chair").style.background = "#1c5bc9";
+        document.getElementById("brie").style.background = "none";
+        document.getElementById("chair").style.color = "#ffffee";
+        document.getElementById("brie").style.color = "black";
+            document.getElementById("profitability").style.display = "none";
+            document.getElementById("profitability2").style.display = "";
+            document.getElementById("business").style.display = "none";
+            document.getElementById("business2").style.display = "";
 		break;	
     }
 }
@@ -351,17 +423,20 @@ function changeWorkers(p_value) {
 	case '2' :
 	case '3' :
 		bld_slider.value = '1';	// размер здания от работников
+        document.getElementById('farm').innerHTML = '<img src="pic/farmsmall.png"  height="100%">';    
 		break;
 	case '4' :
 	case '5' :
 	case '6' :
 		bld_slider.value = '2';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmmid.png"  height="100%">';
 		break;
 	case '7' :
 	case '8' :
 	case '9' :
 	case '10' :
 		bld_slider.value = '3';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmbig.png"  height="100%">'
 		break;
     }
     
@@ -376,12 +451,15 @@ function changeBuildingSize (p_value) {
     switch (p_value) {
 	case '1' :
 		wrk_slider.value = '2';	// кол-во работников от размера здания
-		break;
+		document.getElementById('farm').innerHTML = '<img src="pic/farmsmall.png"  height="100%">';
+            break;
 	case '2' :
 		wrk_slider.value = '5';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmmid.png"  height="100%">';
 		break;
 	case '3' :
 		wrk_slider.value = '8';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmbig.png"  height="100%">';
 		break;
     }
     
@@ -416,8 +494,7 @@ function calcFinTable(p_workers,p_buildsize) {
      cheese_table[7].cells[4].innerText = 1;
     cheese_table[7].cells[5].innerText = 5000;
     
-    //первоначальные расходы
-    cheese_table[7].cells[2].innerText = 3 * cheese_table[9].cells[5].textContent;
+    
     
    
     
@@ -457,7 +534,7 @@ function calcFinTable(p_workers,p_buildsize) {
     cheese_table[7].cells[1].innerText = 3;
     
     //land rental
-    cheese_table[4].cells[5].innerText = Number(bldKoef[p_buildsize-1] * 16000 * activity).toFixed(0);;
+    cheese_table[4].cells[5].innerText = Number(bldKoef[p_buildsize-1] * 16000 * active).toFixed(0);;
     cheese_table[4].cells[4].innerText = bldKoef[p_buildsize-1];
     
         //repair
@@ -466,6 +543,17 @@ function calcFinTable(p_workers,p_buildsize) {
     //подключение к сетям
     cheese_table[5].cells[1].innerText = 1;
     cheese_table[5].cells[2].innerText = 50000;
+    
+    //sum_opex
+    cheese_table[9].cells[5].innerText = parseInt(cheese_table[2].cells[5].textContent) +
+				      parseInt(cheese_table[3].cells[5].textContent) +
+				      parseInt(cheese_table[4].cells[5].textContent) +
+				      parseInt(cheese_table[5].cells[5].textContent) +
+				      parseInt(cheese_table[6].cells[5].textContent) +
+				      parseInt(cheese_table[7].cells[5].textContent);
+    
+    //первоначальные расходы
+    cheese_table[7].cells[2].innerText = 3 * cheese_table[9].cells[5].textContent;
     
      //sum_capex
     cheese_table[9].cells[2].innerText = parseInt(cheese_table[2].cells[2].textContent) +
@@ -476,21 +564,31 @@ function calcFinTable(p_workers,p_buildsize) {
 				      parseInt(cheese_table[7].cells[2].textContent);
 
     
-    //sum_opex
-    cheese_table[9].cells[5].innerText = parseInt(cheese_table[2].cells[5].textContent) +
-				      parseInt(cheese_table[3].cells[5].textContent) +
-				      parseInt(cheese_table[4].cells[5].textContent) +
-				      parseInt(cheese_table[5].cells[5].textContent) +
-				      parseInt(cheese_table[6].cells[5].textContent) +
-				      parseInt(cheese_table[7].cells[5].textContent);
+    
      //выручка
    cheese_table[11].cells[5].innerText = parseInt(cheese_table[9].cells[8].textContent) -
-				      parseInt(cheese_table[9].cells[5].textContent)
+				      parseInt(cheese_table[9].cells[5].textContent);
         
     
     //окупаемость
-    cheese_table[11].cells[2].innerText = parseInt(cheese_table[9].cells[2].textContent) /
-				       parseInt(cheese_table[11].cells[5].textContent)
+    if(parseInt(cheese_table[9].cells[2].textContent) /
+				       parseInt(cheese_table[11].cells[5].textContent) > 0 && parseInt(cheese_table[9].cells[2].textContent) /
+				       parseInt(cheese_table[11].cells[5].textContent) < 36){
+        cheese_table[11].cells[2].innerText = Number(parseInt(cheese_table[9].cells[2].textContent) /
+				       parseInt(cheese_table[11].cells[5].textContent)).toFixed(0);
+    }else{cheese_table[11].cells[2].innerText = 'Unprofitable';
+        
+    }
+    
+    
+    if(cheese_table[11].cells[2].textContent == "Unprofitable"){
+        document.getElementById('profitability').innerHTML = "<br>" + "This configuration is unprofitable";
+        
+    }else{
+         document.getElementById('profitability').innerHTML = "<br>" + "Self-repayment in: " +parseInt(cheese_table[11].cells[2].textContent) + " months" +
+             "<br><br>" + "Start-up capital is: " + Number(parseInt(cheese_table[9].cells[2].textContent)/1000000).toFixed(2) + " mln roubles";
+    };
+   
 
     
     
@@ -518,7 +616,7 @@ function calcFinTable(p_workers,p_buildsize) {
     saw_table[7].cells[1].innerText = 3;
     
     //land rental
-    saw_table[4].cells[5].innerText = Number(bldKoef[p_buildsize-1] * 16000 * activity).toFixed(0);;
+    saw_table[4].cells[5].innerText = Number(bldKoef[p_buildsize-1] * 16000 * active).toFixed(0);;
     saw_table[4].cells[4].innerText = bldKoef[p_buildsize-1];
     
         //repair
@@ -550,8 +648,8 @@ function calcFinTable(p_workers,p_buildsize) {
      saw_table[7].cells[4].innerText = 1;
     saw_table[7].cells[5].innerText = 5000;
     
-    //первоначальные расходы
-    saw_table[7].cells[2].innerText = 3 * saw_table[9].cells[5].textContent;
+
+
     
     
     
@@ -566,6 +664,15 @@ function calcFinTable(p_workers,p_buildsize) {
     saw_table[5].cells[7].innerText = 300;
     saw_table[5].cells[8].innerText = 15000;
     
+    //sum_opex
+    saw_table[9].cells[5].innerText = parseInt(saw_table[2].cells[5].textContent) + parseInt(saw_table[3].cells[5].textContent)
+    + parseInt(saw_table[4].cells[5].textContent) 
+        + parseInt(saw_table[5].cells[5].textContent) 
+        + parseInt(saw_table[6].cells[5].textContent) 
+        + parseInt(saw_table[7].cells[5].textContent);
+        //первоначальные расходы
+        saw_table[7].cells[2].innerText = 3 * saw_table[9].cells[5].textContent;
+    
     //sum_capex
     saw_table[9].cells[2].innerText = parseInt(saw_table[2].cells[2].textContent) + parseInt(saw_table[3].cells[2].textContent)
     + parseInt(saw_table[4].cells[2].textContent) 
@@ -575,12 +682,7 @@ function calcFinTable(p_workers,p_buildsize) {
 
    
     
-    //sum_opex
-    saw_table[9].cells[5].innerText = parseInt(saw_table[2].cells[5].textContent) + parseInt(saw_table[3].cells[5].textContent)
-    + parseInt(saw_table[4].cells[5].textContent) 
-        + parseInt(saw_table[5].cells[5].textContent) 
-        + parseInt(saw_table[6].cells[5].textContent) 
-        + parseInt(saw_table[7].cells[5].textContent);
+    
     
       //sum_revenue
     saw_table[9].cells[8].innerText = parseInt(saw_table[2].cells[8].textContent) + parseInt(saw_table[3].cells[8].textContent)
@@ -600,11 +702,38 @@ function calcFinTable(p_workers,p_buildsize) {
     
     
     
+    if(parseInt(saw_table[9].cells[2].textContent) /
+				       parseInt(saw_table[11].cells[5].textContent) > 0 && parseInt(saw_table[9].cells[2].textContent) /
+				       parseInt(saw_table[11].cells[5].textContent) < 36){
+        saw_table[11].cells[2].innerText = Number(parseInt(saw_table[9].cells[2].textContent) /
+				       parseInt(saw_table[11].cells[5].textContent)).toFixed(0);
+    }else{saw_table[11].cells[2].innerText = 'Unprofitable';
+        
+    }
+    
+    
+    if(saw_table[11].cells[2].textContent == "Unprofitable"){
+        document.getElementById('profitability2').innerHTML = "<br>" + "This configuration is unprofitable";
+        
+    }else{
+         document.getElementById('profitability2').innerHTML = "<br>" + "Self-repayment in: " +parseInt(saw_table[11].cells[2].textContent) + " months" +
+             "<br><br>" + "Start-up capital is: " + Number(parseInt(saw_table[9].cells[2].textContent)/1000000).toFixed(2) + " mln roubles";
+    };
+    
+    
 
 }
-
-
-</script>
     
+    
+    
+    //-----------SLIDER----------------
+    
+   
+    
+ 
+</script>
+<footer>
+Made by: Sokolov Mikhail
+  </footer>    
 </body>
 </html>
