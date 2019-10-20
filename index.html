@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Employ yourself</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'>
+
+  <!--script src="http://code.jquery.com/jquery-1.9.1.js"></script-->
+  <!--script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script-->
+  <!--script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script-->
+
+  <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    
+
+    
+    
+    
+    
+   <!nav role="navigation">
+    <table class="navtop">
+        <tr>
+            <th><a href="#Welcome">Welcome</a></th>
+            <th><a href="#Map">Map</a></th>
+            <th><a href="#Properties">Properties</a></th>
+            <th><a href="#Business">Business</a></th>
+        </tr>
+    </table>
+    <!/nav>
+    
+    <!--заглавная картинка с приветственным словом-->
+    <a name="Welcome"></a>
+    <div class="promo" >
+        <div class="center"><h1>Worker enterprise</h1>
+            <h2>Choose better place for your next workplace</h2>
+        </div>
+    </div>
+
+    <nav role="navigation">
+        <div class="section"></div>
+    <!--<table class="nav">
+        <tr>
+            <th><a href="#1">Welcome</a></th>
+            <th><a href="#2">MAP</a></th>
+            <th><a href="#3">Properties</a></th>
+            <th><a href="#4">Business</a></th>
+        </tr>
+    </table>-->
+    </nav>
+
+    <!--карта с отображением свойств микрорайона-->
+    <a name="Map"></a>
+    <div class="undermap">
+        <div class="half60">
+            <div id="map"></div>
+        </div>
+        <div class="half40" id="description">
+            <br>
+            <p>Universal index: 0</p>
+            <input type="range"  id="universal" min="-12"  max="14" value='0'>
+            <p>Population: 0 </p>
+            <meter value="0" optimum="3000" low="2000" high="5000" min="300" max="7900"></meter>
+            <p>Business activity: 0</p>
+            <meter value="0" optimum="3" low="1" high="8" min="0" max="10"></meter>
+            <p>Territory activity: 0</p>
+            <meter value="0" optimum="40" low="0" high="100" min="0" max="200"></meter>
+            <p>Land type: None</p>
+        
+            
+        </div>
+    </div>
+    
+    <nav role="navigation">
+        <div class="section"></div>
+    <!--<table class="nav">
+        
+        <tr>
+            <th><a href="#1">Welcome</a></th>
+            <th><a href="#2">MAP</a></th>
+            <th><a name="3">Properties</a></th>
+            <th><a href="#4">Business</a></th>
+        </tr>
+    </table>-->
+    </nav>
+
+    <!--микрорайон с возможностью развития-->
+    <a name="Properties"></a>
+    <div class="undermap">
+        <div id="blocktype" class="half60" >
+            <img src="pic/1.png"  height="100%" >
+        </div>
+        
+        
+        <div id="params" class="half40">
+            <ul> 
+		<li onclick="showTable(1);"><div id="brie">Cheese dairy</div></li>
+		<!--<li onclick="showTable(2);">Beer</li>-->
+		<li  onclick="showTable(2);"><div id="chair">Joiner's shop</div></li>
+	    </ul>
+       
+	    
+            <p id="wrkrs">Employers: 1</p>
+	    <input type="range" min="1" max="10" name="workers" value="1" width="80%" 
+		oninput="changeWorkers(this.value)" id="standard">
+            <p id="bldsz">Building size: small</p>
+            <!--input type="range" min="1" max="3" name="buildsize" value="1" 
+		onchange="document.getElementById('bldsz').innerText = 'Building size: '+ bldsz[this.value-1];"-->
+            <input type="range" min="1" max="3" name="buildsize" value="1" id="standard" 
+		oninput="changeBuildingSize(this.value);">
+            <div id="profitability"></div>
+            <div id="profitability2"></div>
+        </div>
+        <div class="over"  id="farm" >
+        </div>
+       
+    </div>
+
+    <nav role="navigation">
+        <div class="section"></div>
+<!-- <table class="nav">
+        <tr>
+            <th><a href="#1">Welcome</a></th>
+            <th><a href="#2">MAP</a></th>
+            <th><a href="#3">Properties</a></th>
+            <th><a name="4">Business</a></th>
+        </tr>
+    </table> -->
+
+    </nav>
+
+    <!--итоговое резюме проекта-->
+    <!--div class="promo" >
+        <div class="center"><h1> That's all, Folks</h1>
+        </div>
+    </div-->
+    
+    <!--div class="undermap"-->
+    <a name="Business"></a>
+        <table class="finance" id="cheese">
+            <tr>
+                <th ></th>
+                <th >Capex, &#x20bd;</th>
+                <th ></th>
+                <th ></th>
+                <th >Opex, &#x20bd;</th>
+                <th ></th>
+                <th ></th>
+                <th >Revenue, &#x20bd;</th>
+                <th ></th>
+            </tr>
+            <tr>
+                <th >Title</th>
+                <th >Units</th>
+                <th >Total, &#x20bd;</th>
+                <th >Title</th>
+                <th >Units</th>
+                <th >Total, &#x20bd;</th>
+                <th >Title</th>
+                <th >Units</th>
+                <th >Total, &#x20bd;</th>
+            </tr>
+
+
+            <tr>
+                <td>Building, units</td><td>3</td><td>0</td><td>Wage fund</td><td>5</td><td>250000</td><td>Cheese</td><td>250</td><td>300000</td>
+            </tr>
+            <tr>
+                <td>Enterprise inventory</td><td>1</td><td>0</td><td>Consumables</td><td>5</td><td>450</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Trade inventory, units</td><td>1</td><td>0</td><td>land rental</td><td>1</td><td>100</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Facilities connection</td><td>1</td><td>0</td><td>Utilities</td><td>1</td><td>100</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>gov. registration</td><td>1</td><td>0</td><td>Repair fund</td><td>1</td><td>100</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Working capital</td><td>1</td><td>0</td><td>Patent</td><td>1</td><td>100</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <th>Total</th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th>
+            </tr>
+            <tr>
+                <td>Capex</td><td></td><td>0</td><td>Opex</td><td></td><td>100</td><td>Revenue</td><td></td><td>100</td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Self-repayment period</td><td></td><td>0</td><td>Profit</td><td></td><td>0</td><td></td><td></td><td></td>
+            </tr>
+        </table>
+    
+    
+    <table class="finance" id="saw">
+            <tr>
+                <th ></th>
+                <th >Capex, &#x20bd;</th>
+                <th ></th>
+                <th ></th>
+                <th >Opex, &#x20bd;</th>
+                <th ></th>
+                <th ></th>
+                <th >Revenue, &#x20bd;</th>
+                <th ></th>
+            </tr>
+            <tr>
+                <th >Title</th>
+                <th >Units</th>
+                <th >Sum, &#x20bd;</th>
+                <th >Title</th>
+                <th >Units</th>
+                <th >Sum, &#x20bd;</th>
+                <th >Title</th>
+                <th >Units</th>
+                <th >Sum, &#x20bd;</th>
+            </tr>
+
+
+            <tr>
+                <td>Building, units</td><td>3</td><td>300000</td><td>Wage fund</td><td>5</td><td>250000</td><td>Furniture</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+                <td>Enterprise inventory</td><td>1</td><td>2001000</td><td>Consumables</td><td>0</td><td>450</td><td>Master Classes</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+                <td>Trade inventory, units</td><td>1</td><td>2003000</td><td>land rental</td><td>1</td><td>100</td><td>Equipment rental</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+                <td>Facilities connection</td><td>1</td><td>2000400</td><td>Utilities</td><td>1</td><td>100</td><td>Repair</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+                <td>Gov. registration</td><td>1</td><td>2000500</td><td>Repair fund</td><td>1</td><td>100</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Working capital</td><td>1</td><td>2000500</td><td>Patent</td><td>1</td><td>100</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <th>Sum</th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th><th ></th>
+            </tr>
+            <tr>
+                <td>Capex</td><td></td><td>200000</td><td>Opex</td><td></td><td>100</td><td>Revenue</td><td></td><td>100</td>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>Self-repayment period</td><td></td><td>20</td><td>Profit</td><td></td><td>30000</td><td></td><td></td><td></td>
+            </tr>
+        </table>
+    
+ 
+        <table class="business" id="business">
+           
+            <tr>
+                <th>Key parthership</th><th>Key activities</th><th>Key resources</th><th>Value proposition</th><th>Customer relationship</th>
+            </tr>
+            <tr>
+                <td>Future urban enterprise</td><td>Cheese production<br>Festival of cheese<br>Workshops</td><td>Milk<br>Ferments</td><td>Home made cheese at a stone's throw</td><td>Demonstration of <br>all stages of production</td>
+            </tr>
+            <tr>
+                <th>Customer segments</th><th>Cost structure</th><th colspan="2">Revenue streams</th><th>Channels</th>
+            </tr>
+            <tr>
+                <td>Low-mid class<br>Average comsumption</td><td>OpEx<br>CapEx</td><td colspan="2">Direct sells of:<br>Gorgonzola<br>Burrata<br>Mozzarela</td><td>Shopping room <br>on the enterprise</td>
+            </tr>
+                 
+        </table>
+    <table class="business" id="business2">
+           
+            <tr>
+                <th>Key parthership</th><th>Key activities</th><th>Key resources</th><th>Value proposition</th><th>Customer relationship</th>
+            </tr>
+            <tr>
+                <td>Future urban enterprise</td><td>Individual furniture production<br>Furniture repair<br> Rental equipment<br>Workshops</td><td>Timber<br>Leather<br>Metal elements</td><td>Individual elements of interior</td><td>Personal approach<br>Co-creation</td>
+            </tr>
+            <tr>
+                <th>Customer segments</th><th>Cost structure</th><th colspan="2">Revenue streams</th><th>Channels</th>
+            </tr>
+            <tr>
+                <td>Mid-class who<br>is tired of sweden furniture</td><td>OpEx<br>CapEx</td><td colspan="2">Direct sells of furniture<br>Equipment rental</td><td>Shopping room <br>on the enterprise</td>
+            </tr>
+                 
+        </table>
+    <br>
+    <br>
+    <br>
+     <!--/div-->        
+   
+
+<script src="const.js"></script>
+
+<script>
+
+   mapboxgl.accessToken = 'pk.eyJ1IjoibWlraGFpbHNva29sb3YiLCJhIjoiY2pldjZ0NHZqMGI5MTJxbDd1dHV3ZDl0eiJ9.omvRoGjfSasjuCVj9TRJRw';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mikhailsokolov/cjv184fxl4ajt1fovcrnvofxj',
+  center: [37.759454, 55.823340],
+  zoom: 14.6
+});
+    
+  
+    
+map.on('load', function () {
+    map.addSource('cells', {
+        type: 'vector',
+        url: 'mapbox://mikhailsokolov.1032comy'
+    });
+map.addLayer({
+    'id': 'newlayer',
+    'source': 'cells',
+    'type': 'fill',
+    'paint':{'fill-color': 'white',
+            'fill-opacity': 0.01},
+    'source-layer':'cells43-c28lyf'
+    });
+    
+});
+      
+map.on('mouseenter', 'newlayer', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
+ 
+
+map.on('mouseleave', 'newlayer', function () {
+    map.getCanvas().style.cursor = '';
+});
+    
+map.on('click', 'newlayer', function (e) {
+
+    blocktype = e.features[0].properties.blocktype;
+    ismunicipal = e.features[0].properties.ismunicipal;
+    population = e.features[0].properties.population;
+    business = e.features[0].properties.amount || 0;
+    distance = e.features[0].properties.width || 100000;
+    universal = e.features[0].properties.universal;
+    activity = e.features[0].properties.activity;
+    // count with remap
+    //low2+(X-low1)*(high2-low2)/(high1-low1)
+    active = 1+(e.features[0].properties.activity-1)*(2-1)/(10-1);
+    demand = population * 0.25 * (10-business)/10;
+    
+    
+    //console.log(demand);
+
+    document.getElementById('description').innerHTML = 
+        '</br>' +
+        '<p>Universal index: ' + universal + '</p>' +
+        '<input type="range" list="tickmarks" id="universal" min="-12"  max="14"  value=' + universal + '>' +
+        '<p>Population: ' + population + '</p>' +
+        '<meter value=' + population + ' optimum="6000" low="2500" high="5000" min="500" max="8000"></meter>' +
+        '<p>Business activity: ' + business + '</p>' +
+        '<meter value=' + business + ' optimum="2" low="3" high="6" min="0" max="10"></meter>' +
+        '<p>territory activity: ' + activity + '</p>' +
+        '<meter value=' + activity + ' optimum="1" low="3" high="6" min="0" max="10"></meter>' +
+        '<p>Land type: ' + (e.features[0].properties.ismunicipal ? "Municipal" : "Residential") + "</p>"
+        ;
+    
+    //console.log(activity);
+    
+    document.getElementById('blocktype').innerHTML =
+        '<img src="pic/' + blocktype + '.png"  height="100%">';
+    
+    
+    if(universal < '-4')
+    {document.getElementById("universal").style.background = "#d8552d";}
+    else if(universal > '4')
+    {document.getElementById("universal").style.background = "#429b4d";}
+    else{document.getElementById("universal").style.background = "#f2b75e";
+    };
+    
+}); 
+
+var cheese_table = document.getElementById("cheese").rows;
+var saw_table = document.getElementById("saw").rows;
+var biz_cheese = document.getElementById("business").rows;
+var biz_saw = document.getElementById("business2").rows;
+
+document.getElementById("cheese").style.display = "none";
+    document.getElementById("saw").style.display = "none";
+    document.getElementById("business2").style.display = "none";
+    document.getElementById("business").style.display = "none";
+    
+
+function showTable(tbl) {
+    switch (tbl) {
+	case 1 :
+		document.getElementById("cheese").style.display = "";
+        document.getElementById("saw").style.display = "none"
+        document.getElementById("brie").style.background = "#1c5bc9";
+        document.getElementById("chair").style.background = "none";
+        document.getElementById("brie").style.color = "#ffffee";
+        document.getElementById("chair").style.color = "black";
+        document.getElementById("profitability").style.display = "";
+        document.getElementById("profitability2").style.display = "none";
+            document.getElementById("business").style.display = "";
+            document.getElementById("business2").style.display = "none";
+            
+		break;	
+
+	case 2 :
+		document.getElementById("cheese").style.display = "none"
+        document.getElementById("saw").style.display = "";
+        document.getElementById("chair").style.background = "#1c5bc9";
+        document.getElementById("brie").style.background = "none";
+        document.getElementById("chair").style.color = "#ffffee";
+        document.getElementById("brie").style.color = "black";
+            document.getElementById("profitability").style.display = "none";
+            document.getElementById("profitability2").style.display = "";
+            document.getElementById("business").style.display = "none";
+            document.getElementById("business2").style.display = "";
+		break;	
+    }
+}
+var bld_slider = document.getElementsByName("buildsize")[0];	// слайдер Размер здания
+var wrk_slider = document.getElementsByName("workers")[0];	// слайдер Работники
+
+function changeWorkers(p_value) {
+
+    document.getElementById('wrkrs').innerText = 'Workers: '+ p_value;
+
+    switch (p_value) {
+	case '1' :
+	case '2' :
+	case '3' :
+		bld_slider.value = '1';	// размер здания от работников
+        document.getElementById('farm').innerHTML = '<img src="pic/farmsmall.png"  height="100%">';    
+		break;
+	case '4' :
+	case '5' :
+	case '6' :
+		bld_slider.value = '2';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmmid.png"  height="100%">';
+		break;
+	case '7' :
+	case '8' :
+	case '9' :
+	case '10' :
+		bld_slider.value = '3';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmbig.png"  height="100%">'
+		break;
+    }
+    
+    document.getElementById('bldsz').innerText = 'Building size: '+ bldsz[bld_slider.value-1];
+    
+    calcFinTable(p_value, bld_slider.value);
+}
+
+function changeBuildingSize (p_value) {
+    document.getElementById('bldsz').innerText = 'Building size: '+ bldsz[p_value-1];
+    
+    switch (p_value) {
+	case '1' :
+		wrk_slider.value = '2';	// кол-во работников от размера здания
+		document.getElementById('farm').innerHTML = '<img src="pic/farmsmall.png"  height="100%">';
+            break;
+	case '2' :
+		wrk_slider.value = '5';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmmid.png"  height="100%">';
+		break;
+	case '3' :
+		wrk_slider.value = '8';
+        document.getElementById('farm').innerHTML = '<img src="pic/farmbig.png"  height="100%">';
+		break;
+    }
+    
+    document.getElementById('wrkrs').innerText = 'Workers: '+ wrk_slider.value;
+    
+    calcFinTable(wrk_slider.value, p_value);
+}
+
+
+// расчет фин таблицы
+function calcFinTable(p_workers,p_buildsize) {
+
+//CHEESE CALC - START ------------------------------------------------------------------------------------    
+    
+    //wage fund(2;5), (2;4)
+    cheese_table[2].cells[5].innerText = p_workers * 30000;
+    cheese_table[2].cells[4].innerText = p_workers;
+    
+    
+    //consumables (3,4), (3,5)
+
+    if(p_workers*220 < Number(demand).toFixed(0) *0.25)
+    {
+        cheese_table[3].cells[5].innerText = p_workers * 220 * 450;
+        cheese_table[3].cells[4].innerText = p_workers * 10*22;
+    }else{cheese_table[3].cells[5].innerText = Number(demand).toFixed(0) * 450 *0.25;
+                 cheese_table[3].cells[4].innerText = Number(demand).toFixed(0)*0.25;};
+    
+    //коммуналка
+    cheese_table[5].cells[4].innerText = p_workers * 10 * 22;
+    cheese_table[5].cells[5].innerText = p_workers * 10 * 22 * 16;
+    
+    //патент 
+     cheese_table[7].cells[4].innerText = 1;
+    cheese_table[7].cells[5].innerText = 5000;
+    
+    
+    
+   
+    
+    //производится:
+    //cheese_table[3].cells[6].innerText = "производится";
+    //cheese_table[3].cells[7].innerText = p_workers*10*22;
+    //cheese_table[3].cells[8].innerText = p_workers*10*22*1500;
+    //cheese_table[2].cells[7].innerText = Number(demand).toFixed(0)*0.25;
+    //cheese_table[2].cells[8].innerText = Number(demand * 0.25*1500).toFixed(0);
+    
+    if (Number(demand * 0.25*1500).toFixed(0) < Number(parseInt(p_workers*10*22*1500))) {
+        cheese_table[2].cells[7].innerText = Number(demand).toFixed(0)*0.25;
+        cheese_table[2].cells[8].innerText = Number(demand).toFixed(0)*0.25*1500;
+        cheese_table[9].cells[8].innerText = parseInt(cheese_table[2].cells[8].textContent);
+    } 
+    else { 
+        cheese_table[2].cells[7].innerText = p_workers*10*22;
+        cheese_table[2].cells[8].innerText = p_workers*10*22*1500;
+	cheese_table[9].cells[8].innerText = p_workers*10*22*1500; 
+    };
+    
+   
+
+    //building
+    cheese_table[2].cells[2].innerText = buildCost[0] * p_buildsize ;
+    
+    cheese_table[2].cells[1].innerText = p_buildsize;
+    //производ оборуд
+    cheese_table[3].cells[1].innerText = p_buildsize;
+    cheese_table[3].cells[2].innerText = p_buildsize * 200000;
+    //торг оборуд
+    cheese_table[4].cells[1].innerText = 1;
+    cheese_table[4].cells[2].innerText = 200000;
+    
+    //гос комиссия
+    cheese_table[6].cells[1].innerText = 1;
+    cheese_table[6].cells[2].innerText = 20000;
+    
+    //первоначальные расходы
+    
+    cheese_table[7].cells[1].innerText = 3;
+    
+    //land rental
+    cheese_table[4].cells[5].innerText = Number(bldKoef[p_buildsize-1] * 16000 * active).toFixed(0);;
+    cheese_table[4].cells[4].innerText = bldKoef[p_buildsize-1];
+    
+        //repair
+     cheese_table[6].cells[4].innerText = buildingsize[p_buildsize-1];
+    cheese_table[6].cells[5].innerText = buildingsize[p_buildsize-1] * 25;
+    //подключение к сетям
+    cheese_table[5].cells[1].innerText = 1;
+    cheese_table[5].cells[2].innerText = 50000;
+    
+    //sum_opex
+    cheese_table[9].cells[5].innerText = parseInt(cheese_table[2].cells[5].textContent) +
+				      parseInt(cheese_table[3].cells[5].textContent) +
+				      parseInt(cheese_table[4].cells[5].textContent) +
+				      parseInt(cheese_table[5].cells[5].textContent) +
+				      parseInt(cheese_table[6].cells[5].textContent) +
+				      parseInt(cheese_table[7].cells[5].textContent);
+    
+    //первоначальные расходы
+    cheese_table[7].cells[2].innerText = 3 * cheese_table[9].cells[5].textContent;
+    
+     //sum_capex
+    cheese_table[9].cells[2].innerText = parseInt(cheese_table[2].cells[2].textContent) +
+				      parseInt(cheese_table[3].cells[2].textContent) +
+				      parseInt(cheese_table[4].cells[2].textContent) +
+				      parseInt(cheese_table[5].cells[2].textContent) +
+				      parseInt(cheese_table[6].cells[2].textContent) +
+				      parseInt(cheese_table[7].cells[2].textContent);
+
+    
+    
+     //выручка
+   cheese_table[11].cells[5].innerText = parseInt(cheese_table[9].cells[8].textContent) -
+				      parseInt(cheese_table[9].cells[5].textContent);
+        
+    
+    //окупаемость
+    if(parseInt(cheese_table[9].cells[2].textContent) /
+				       parseInt(cheese_table[11].cells[5].textContent) > 0 && parseInt(cheese_table[9].cells[2].textContent) /
+				       parseInt(cheese_table[11].cells[5].textContent) < 36){
+        cheese_table[11].cells[2].innerText = Number(parseInt(cheese_table[9].cells[2].textContent) /
+				       parseInt(cheese_table[11].cells[5].textContent)).toFixed(0);
+    }else{cheese_table[11].cells[2].innerText = 'Unprofitable';
+        
+    }
+    
+    
+    if(cheese_table[11].cells[2].textContent == "Unprofitable"){
+        document.getElementById('profitability').innerHTML = "<br>" + "This configuration is unprofitable";
+        
+    }else{
+         document.getElementById('profitability').innerHTML = "<br>" + "Self-repayment in: " +parseInt(cheese_table[11].cells[2].textContent) + " months" +
+             "<br><br>" + "Start-up capital is: " + Number(parseInt(cheese_table[9].cells[2].textContent)/1000000).toFixed(2) + " mln roubles";
+    };
+   
+
+    
+    
+//CHEESE CALC END -----------------------------------------------------------
+    
+//SAW CALC START ------------------------------------------------------------
+    
+    //building
+    saw_table[2].cells[2].innerText = buildCost[0] * p_buildsize ;
+    
+    saw_table[2].cells[1].innerText = p_buildsize;
+    //производ оборуд
+    saw_table[3].cells[1].innerText = p_buildsize;
+    saw_table[3].cells[2].innerText = p_buildsize * 200000;
+    //торг оборуд
+    saw_table[4].cells[1].innerText = 1;
+    saw_table[4].cells[2].innerText = 200000;
+    
+    //гос комиссия
+    saw_table[6].cells[1].innerText = 1;
+    saw_table[6].cells[2].innerText = 20000;
+    
+    //первоначальные расходы
+    
+    saw_table[7].cells[1].innerText = 3;
+    
+    //land rental
+    saw_table[4].cells[5].innerText = Number(bldKoef[p_buildsize-1] * 16000 * active).toFixed(0);;
+    saw_table[4].cells[4].innerText = bldKoef[p_buildsize-1];
+    
+        //repair
+     saw_table[6].cells[4].innerText = buildingsize[p_buildsize-1];
+    saw_table[6].cells[5].innerText = buildingsize[p_buildsize-1] * 25;
+    //подключение к сетям
+    saw_table[5].cells[1].innerText = 1;
+    saw_table[5].cells[2].innerText = 50000;
+    //sum_capex
+     saw_table[9].cells[2].innerText = parseInt(saw_table[2].cells[2].textContent) + parseInt(saw_table[3].cells[2].textContent)
+        + parseInt(saw_table[4].cells[2].textContent) 
+        + parseInt(saw_table[5].cells[2].textContent) 
+        + parseInt(saw_table[6].cells[2].textContent) 
+        + parseInt(saw_table[7].cells[2].textContent);
+    
+        saw_table[2].cells[5].innerText = p_workers * 30000;
+    saw_table[2].cells[4].innerText = p_workers;
+    
+    
+    //consumables (3,4), (3,5)
+    saw_table[3].cells[4].innerText = p_workers * 10;
+    saw_table[3].cells[5].innerText = p_workers * 4 * 4200;
+    
+    //коммуналка
+    saw_table[5].cells[4].innerText = p_workers * 10 * 22;
+    saw_table[5].cells[5].innerText = p_workers * 10 * 22 * 16;
+    
+    //патент 
+     saw_table[7].cells[4].innerText = 1;
+    saw_table[7].cells[5].innerText = 5000;
+    
+
+
+    
+    
+    
+    //производится:
+    
+    saw_table[2].cells[7].innerText = p_workers*4;
+    saw_table[2].cells[8].innerText = p_workers*4*25000;
+    saw_table[3].cells[7].innerText = p_workers*4;
+    saw_table[3].cells[8].innerText = 30000;
+    saw_table[4].cells[7].innerText = 4;
+    saw_table[4].cells[8].innerText = 15000;
+    saw_table[5].cells[7].innerText = 300;
+    saw_table[5].cells[8].innerText = 15000;
+    
+    //sum_opex
+    saw_table[9].cells[5].innerText = parseInt(saw_table[2].cells[5].textContent) + parseInt(saw_table[3].cells[5].textContent)
+    + parseInt(saw_table[4].cells[5].textContent) 
+        + parseInt(saw_table[5].cells[5].textContent) 
+        + parseInt(saw_table[6].cells[5].textContent) 
+        + parseInt(saw_table[7].cells[5].textContent);
+        //первоначальные расходы
+        saw_table[7].cells[2].innerText = 3 * saw_table[9].cells[5].textContent;
+    
+    //sum_capex
+    saw_table[9].cells[2].innerText = parseInt(saw_table[2].cells[2].textContent) + parseInt(saw_table[3].cells[2].textContent)
+    + parseInt(saw_table[4].cells[2].textContent) 
+        + parseInt(saw_table[5].cells[2].textContent) 
+        + parseInt(saw_table[6].cells[2].textContent) 
+        + parseInt(saw_table[7].cells[2].textContent);
+
+   
+    
+    
+    
+      //sum_revenue
+    saw_table[9].cells[8].innerText = parseInt(saw_table[2].cells[8].textContent) + parseInt(saw_table[3].cells[8].textContent)
+    + parseInt(saw_table[4].cells[8].textContent) 
+        + parseInt(saw_table[5].cells[8].textContent);
+    
+   // if (parseInt(table_fin[2].cells[8].textContent) < parseInt(fin_table[3].cells[8].textContent)) {
+//        fin_table[9].cells[8].innerText = parseInt(fin_table[2].cells[8].textContent);
+ //   } else { fin_table[9].cells[8].innerText = parseInt(fin_table[3].cells[8].textContent); };
+    
+    //выручка
+   saw_table[11].cells[5].innerText = parseInt(saw_table[9].cells[8].textContent) - parseInt(saw_table[9].cells[5].textContent);
+        
+    
+    //окупаемость
+    saw_table[11].cells[2].innerText = parseInt(saw_table[9].cells[2].textContent) / parseInt(saw_table[11].cells[5].textContent);
+    
+    
+    
+    if(parseInt(saw_table[9].cells[2].textContent) /
+				       parseInt(saw_table[11].cells[5].textContent) > 0 && parseInt(saw_table[9].cells[2].textContent) /
+				       parseInt(saw_table[11].cells[5].textContent) < 36){
+        saw_table[11].cells[2].innerText = Number(parseInt(saw_table[9].cells[2].textContent) /
+				       parseInt(saw_table[11].cells[5].textContent)).toFixed(0);
+    }else{saw_table[11].cells[2].innerText = 'Unprofitable';
+        
+    }
+    
+    
+    if(saw_table[11].cells[2].textContent == "Unprofitable"){
+        document.getElementById('profitability2').innerHTML = "<br>" + "This configuration is unprofitable";
+        
+    }else{
+         document.getElementById('profitability2').innerHTML = "<br>" + "Self-repayment in: " +parseInt(saw_table[11].cells[2].textContent) + " months" +
+             "<br><br>" + "Start-up capital is: " + Number(parseInt(saw_table[9].cells[2].textContent)/1000000).toFixed(2) + " mln roubles";
+    };
+    
+    
+
+}
+    
+    
+    
+    //-----------SLIDER----------------
+    
+   
+    
+ 
+</script>
+<footer>
+Made by: Sokolov Mikhail
+  </footer> 
+    <script type="text/javascript">
+	var delay_popup = 1000;
+	setTimeout("document.getElementById('overlay').style.display='block'", delay_popup);
+</script>
+    
+        <div id="overlay">
+    <div class="popup">
+        <h2>Project description</h2>
+        <p>
+            This website is the part of master thesis devoted to solving the problem of technological unemployment by developing local work places.
+         </p>
+
+         <p>The purpose of this site is to show which spot in the district is suitable for small business development. It uses the universal index, which consists of information about specific place, such as: the closiness to the existing business, population density nearby, road use activity and so on. </p>
+           
+        <p>The site consists of 3 parts: <bold>the map</bold>, <bold>the visual part</bold>with type of the block, type of business and territory index and Osterwald <bold>business model</bold>which appears after choosing the spot and the business type</p>
+       <p>
+           To use this site, first, you need to: <br>
+           1.choose the spot on the map, the color differs from blue to red, where blue shows the best spots for new development and red shows the worst ones. By choosing the location you can move to the business type (for now only two are available).<br>
+           2.After choosing the business type, the option of size is available. Depending on the territory index and start-up capital you can choose affordable size and get the information about your business model<br>
+           3. The business model sums up both, analytical data and preferences of the user and gives the table with key information.
+       </p>
+        <button class="close" title="Закрыть" onclick="document.getElementById('overlay').style.display='none';"></button>
+    </div>
+</div>
+</body>
+</html>
